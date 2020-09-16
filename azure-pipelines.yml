@@ -62,7 +62,7 @@ stages:
           deployToSlotOrASE: true
           ResourceGroupName: 'Telios'
           SlotName: 'Dev'
-          packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+          package: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
       - task: AzureAppServiceManage@0
         inputs:
