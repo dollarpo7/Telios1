@@ -59,7 +59,11 @@ stages:
           azureSubscription: 'Visual Studio Enterprise(1)(3a5ea0a9-8105-4dce-9d6e-d52d517cee2f)'
           appType: 'webApp'
           WebAppName: 'teliosPortal'
-          package: '$(Pipeline.Workspace)/**/*.zip'
+          deployToSlotOrASE: true
+          ResourceGroupName: 'Telios'
+          SlotName: 'Dev'
+          packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
       - task: AzureAppServiceManage@0
         inputs:
           azureSubscription: 'Visual Studio Enterprise(1)(3a5ea0a9-8105-4dce-9d6e-d52d517cee2f)'
