@@ -3,10 +3,10 @@ trigger:
     branches:
       include: 
       - master
-  variables:
-    buildConfiguration: 'Release'
+variables:
+   buildConfiguration: 'Release'
     
-  stages:
+stages:
   
   # Build Stage
   - stage: BuildAndTest
@@ -56,8 +56,17 @@ trigger:
       - task: AzureRmWebAppDeployment@4
         inputs:
           ConnectionType: 'AzureRM'
-          azureSubscription: 'devSC'
-          WebAppName: 'stapp001'
+          azureSubscription: 'Visual Studio Enterprise(1)(3a5ea0a9-8105-4dce-9d6e-d52d517cee2f)'
+          appType: 'webApp'
+          WebAppName: 'teliosPortal'
           package: '$(Pipeline.Workspace)/**/*.zip'
-          WebAppKind: WebApp
+      - task: AzureAppServiceManage@0
+        inputs:
+          azureSubscription: 'Visual Studio Enterprise(1)(3a5ea0a9-8105-4dce-9d6e-d52d517cee2f)'
+          Action: 'Swap Slots'
+          WebAppName: 'teliosPortal'
+          ResourceGroupName: 'Telios'
+          SourceSlot: 'Dev'
+          PreserveVnet: true
+
   

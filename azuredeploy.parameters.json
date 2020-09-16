@@ -7,10 +7,7 @@
         },
         "environments": {
             "value": [
-              "Dev",
-              "QA",
-              "UAT",
-              "Preview"
+              "Dev"
             ]
         },
         "location": {
