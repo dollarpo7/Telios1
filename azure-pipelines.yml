@@ -5,6 +5,9 @@ trigger:
       - master
 variables:
    buildConfiguration: 'Release'
+   azureSubscription: 'Visual Studio Enterprise(1)(3a5ea0a9-8105-4dce-9d6e-d52d517cee2f)'
+   WebAppName: 'teliosPortal'
+   ResourceGroupName: 'Telios'
     
 stages:
   
@@ -56,20 +59,20 @@ stages:
       - task: AzureRmWebAppDeployment@4
         inputs:
           ConnectionType: 'AzureRM'
-          azureSubscription: 'Visual Studio Enterprise(1)(3a5ea0a9-8105-4dce-9d6e-d52d517cee2f)'
+          azureSubscription: $(azureSubscription)
           appType: 'webApp'
-          WebAppName: 'teliosPortal'
+          WebAppName: $(WebAppName)
           deployToSlotOrASE: true
-          ResourceGroupName: 'Telios'
+          ResourceGroupName: $(ResourceGroupName)
           SlotName: 'Dev'
           package: '$(Pipeline.Workspace)/**/*.zip'
 
       - task: AzureAppServiceManage@0
         inputs:
-          azureSubscription: 'Visual Studio Enterprise(1)(3a5ea0a9-8105-4dce-9d6e-d52d517cee2f)'
+          azureSubscription: $(azureSubscription)
           Action: 'Swap Slots'
-          WebAppName: 'teliosPortal'
-          ResourceGroupName: 'Telios'
+          WebAppName: $(WebAppName)
+          ResourceGroupName: $(ResourceGroupName)
           SourceSlot: 'Dev'
           PreserveVnet: true
 
