@@ -10,7 +10,7 @@ Thid Project contains the following files:
   <img src="https://aka.ms/deploytoazurebutton"/>
 </a>
 
-<p> ACTION PLAN </p>
+<p> <strong> ACTION PLAN </strong> </p>
 
 1. Deploy the ARM Template above.
 
