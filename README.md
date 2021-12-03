@@ -1,6 +1,6 @@
 # Telios1
 
-Thid Project contains the following files:
+Third Project contains the following files:
 
 1. A basic .NET Core application
 2. An ARM Teamplate (IAC) to deploy a Web App with slots
