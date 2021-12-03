@@ -41,7 +41,7 @@ stages:
       - publish: $(Build.StagingDirectory)
         artifact: app
       
-      - script: 
+      - script: |
          ls
          cd bin
 
