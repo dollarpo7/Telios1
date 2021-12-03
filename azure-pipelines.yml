@@ -5,7 +5,7 @@ trigger:
       - master
 variables:
    buildConfiguration: 'Release'
-   azureSubscription: 'Visual Studio Enterprise(1)(3a5ea0a9-8105-4dce-9d6e-d52d517cee2f)'
+   azureSubscription: 'Azure Pass - Sponsorship()(44c254f7-5162-4fcc-8105-3660b0b461ba)'
    WebAppName: 'teliosPortal'
    ResourceGroupName: 'Telios'
     
