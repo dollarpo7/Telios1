@@ -42,7 +42,8 @@ stages:
         artifact: app
       
       - script: 
-         ls -a
+         ls
+         cd bin
 
   # Staging release
   - stage: Staging
