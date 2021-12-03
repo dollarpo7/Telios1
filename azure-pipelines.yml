@@ -16,7 +16,7 @@ stages:
     jobs:
     - job: BuildAndTest
       pool:
-        vmImage: 'Ubuntu-16.04'
+        vmImage: 'Ubuntu-18.04'
       steps:
       # Build and publish the application library
       - task: DotNetCoreCLI@2
@@ -46,7 +46,7 @@ stages:
     jobs:
     - job: Release
       pool:
-        vmImage: 'Ubuntu-16.04'
+        vmImage: 'Ubuntu-18.04'
       steps:
       # Don't clone the repo
       - checkout: none
