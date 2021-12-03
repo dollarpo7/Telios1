@@ -42,7 +42,6 @@ stages:
         artifact: app
       
       - script: |
-         ls
          cd bin
 
   # Staging release
@@ -72,7 +71,7 @@ stages:
           deployToSlotOrASE: true
           ResourceGroupName: '$(ResourceGroupName)'
           SlotName: 'Dev'
-          packageForLinux: '$(Pipeline.Workspace)/**/*.zip'
+          packageForLinux: '$(Pipeline.Workspace)/app/*.zip'
 
       - task: AzureAppServiceManage@0
         inputs:
