@@ -37,12 +37,14 @@ stages:
           publishWebProjects: True
           arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
           zipAfterPublish: True
+
       # Publish the app as an artifact
-      - publish: $(Build.StagingDirectory)
-        artifact: app
+      - publish: $(Build.ArtifactStagingDirectory)
+        artifact: teliosapp
       
       - script: |
-         cd bin
+         cd $(Build.ArtifactStagingDirectory)
+         tree -a
 
   # Staging release
   - stage: Staging
@@ -55,8 +57,10 @@ stages:
       - checkout: none
   
       # Download the published application artifact
-      #- download: current
-        #artifact: app
+      - task: DownloadPipelineArtifact@2
+        inputs:
+          buildType: 'current'
+          targetPath: '$(Pipeline.Workspace)'
       
       - script: 
          ls -a
@@ -71,7 +75,7 @@ stages:
           deployToSlotOrASE: true
           ResourceGroupName: '$(ResourceGroupName)'
           SlotName: 'Dev'
-          packageForLinux: '$(Pipeline.Workspace)/app/*.zip'
+          packageForLinux: '$(Pipeline.Workspace)/**/*.zip'
 
       - task: AzureAppServiceManage@0
         inputs:
