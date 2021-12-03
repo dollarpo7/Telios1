@@ -40,7 +40,10 @@ stages:
       # Publish the app as an artifact
       - publish: $(Build.StagingDirectory)
         artifact: app
-        
+      
+      - script: 
+         ls -a
+
   # Staging release
   - stage: Staging
     jobs:
@@ -52,8 +55,8 @@ stages:
       - checkout: none
   
       # Download the published application artifact
-      - download: current
-        artifact: app
+      #- download: current
+        #artifact: app
       
       - script: 
          ls -a
@@ -68,7 +71,7 @@ stages:
           deployToSlotOrASE: true
           ResourceGroupName: '$(ResourceGroupName)'
           SlotName: 'Dev'
-          packageForLinux: '$(System.DefaultWorkingDirectory)/app'
+          packageForLinux: '$(Pipeline.Workspace)/**/*.zip'
 
       - task: AzureAppServiceManage@0
         inputs:
