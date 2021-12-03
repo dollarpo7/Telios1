@@ -54,7 +54,10 @@ stages:
       # Download the published application artifact
       - download: current
         artifact: app
-  
+      
+      - script: 
+         ls -a
+
       # Release the app
       - task: AzureRmWebAppDeployment@4
         inputs:
@@ -65,7 +68,7 @@ stages:
           deployToSlotOrASE: true
           ResourceGroupName: '$(ResourceGroupName)'
           SlotName: 'Dev'
-          packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+          packageForLinux: '$(System.DefaultWorkingDirectory)/app'
 
       - task: AzureAppServiceManage@0
         inputs:
