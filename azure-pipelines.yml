@@ -5,7 +5,7 @@ trigger:
       - master
 variables:
    buildConfiguration: 'Release'
-   azureSubscription: 'Azure Pass - Sponsorship()(44c254f7-5162-4fcc-8105-3660b0b461ba)'
+   azureSubscription: 'Azure Pass - Sponsorship(44c254f7-5162-4fcc-8105-3660b0b461ba)'
    WebAppName: 'teliosPortal'
    ResourceGroupName: 'Telios'
     
@@ -59,13 +59,13 @@ stages:
       - task: AzureRmWebAppDeployment@4
         inputs:
           ConnectionType: 'AzureRM'
-          azureSubscription: $(azureSubscription)
+          azureSubscription: '$(azureSubscription)'
           appType: 'webApp'
-          WebAppName: $(WebAppName)
+          WebAppName: '$(WebAppName)'
           deployToSlotOrASE: true
-          ResourceGroupName: $(ResourceGroupName)
+          ResourceGroupName: '$(ResourceGroupName)'
           SlotName: 'Dev'
-          package: '$(Pipeline.Workspace)/**/*.zip'
+          packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
       - task: AzureAppServiceManage@0
         inputs:
